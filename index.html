@@ -44,11 +44,15 @@
                         <a class="menuLink" href="./index.html">HOME</a>
                         <a class="menuLink" href="./products.html">PRODUCTS</a>
                         
-                        <select id="currencySelection" name="currencySelection" class="select">
-                            <option selected value="CAD">CAD</option>
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                        </select>
+                        <div class="labelWrap">
+                            <select id="currencySelection" name="currencySelection" class="select fas fa-chevron-down">
+                                <option selected value="CAD">CAD</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                         
                         
                     </div>
@@ -141,19 +145,27 @@
         <!-- Second attempt -->
         <section class= 'testCategory' >
             <div class="section1 categoryLink" id="men's clothing">
-                <img class='left' src="assets/womanClothing.webp" alt="">
-                
+                <div class="imgContainer leftImg">
+                    <img src="assets/man2.png" alt="Picture of a man standing up">
+
+                </div>
+                <h3>Men's Clothing</h3>
                 <p>Shop Now!</p>
             </div>
             <div class="section2 categoryLink" id="women's clothing">
+                <div class="imgContainer rightImg">
+                    <img src="assets/woman2.png" alt="Picture of a woman sitting">
 
-                <img class='right' src="assets/panoramicTest.jpg" alt="">
+                </div>
+                <h3>Women's Clothing</h3>
+
+                <p>Shop Now!</p>
 
             </div>
         </section>   
         
         <div class='h2Container'>
-            <h2> Products</h2>
+            <h2> PRODUCTS</h2>
         </div>
 
         <section class='galleryGrid'>
@@ -183,7 +195,7 @@
         </section>
 
         <div class='h2Container'>
-            <h2> New Releases</h2>
+            <h2> NEW RELEASES</h2>
         </div>
 
         <section class='newReleases'>

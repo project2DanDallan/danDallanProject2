@@ -24,13 +24,13 @@ ecommerceApp.addLinks = () => {
 
 
 // added opacity on hover on sibling element! (Doesn't work at the moment)
-const leftAndRight = document.querySelectorAll('.testCategory img')
+const leftAndRight = document.querySelectorAll('.testCategory .imgContainer')
 
 leftAndRight.forEach(image => {
-    console.log(image.classList.contains('left'))
-    const right = document.querySelector('.right')
-    const left = document.querySelector ('.left')
-    if (image.classList.contains('left')) {
+    console.log(image.classList.contains('leftImg'))
+    const right = document.querySelector('.rightImg')
+    const left = document.querySelector ('.leftImg')
+    if (image.classList.contains('leftImg')) {
         image.addEventListener('mouseover', function(){
             right.style.opacity = '0.7'
         })
@@ -52,6 +52,10 @@ console.log(section1Width)
 const p = document.querySelector('.testCategory .section1 p')
 p.style.left = `${section1Width}px`;
 
+const section2Width= document.querySelector(".testCategory .section2").offsetWidth
+
+const p2 = document.querySelector('.testCategory .section2 p')
+p2.style.right = `${section1Width}px`;
 
 
 
