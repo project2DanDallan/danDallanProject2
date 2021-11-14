@@ -79,6 +79,9 @@ navMenuOverlay.addEventListener('click', function() {
 
 
 const currencySelection = document.getElementById('currencySelection');
+// currencySelection.value = ecommerceApp.currencyId;
+// console.log(ecommerceApp.currencyId)
+// console.log('h')
 
 currencySelection.addEventListener("change", function(e) {
     console.log(currencySelection.value)
@@ -93,6 +96,7 @@ const ulElement = document.getElementById('wishlist');
 ecommerceApp.displayWishlist = function(cartArray) {
 
     ulElement.innerHTML = '';
+    ecommerceApp.totalCartValue = 0; // make cart total value = 0
 
     for(prop in cartArray) {
         const listItemElement = document.createElement('div');
@@ -117,9 +121,18 @@ ecommerceApp.displayWishlist = function(cartArray) {
         cartItemTitleLink.innerHTML = cartArray[prop].title;
         cartItemTitle.appendChild(cartItemTitleLink);
 
+        const cartItemPrice = document.createElement('div');
+        cartItemPrice.classList.add('cartItemPrice');
+        cartItemPrice.innerHTML = (cartArray[prop].price*ecommerceApp.currency[ecommerceApp.currencyId]).toFixed(2);
+
         listItemElement.appendChild(cartItemDel);
         listItemElement.appendChild(cartItemImgContainer);
         listItemElement.appendChild(cartItemTitle);
+        listItemElement.appendChild(cartItemPrice);
+
+        // add sum of each cart item price to subtotal
+        ecommerceApp.totalCartValue += cartArray[prop].price;
+        console.log(ecommerceApp.totalCartValue)
 
         // add to div
         ulElement.appendChild(listItemElement)
@@ -150,8 +163,10 @@ ecommerceApp.displayWishlist = function(cartArray) {
     // if ulElement in cart menu is empty
     if(ulElement.innerHTML === '') {
         document.getElementById('emptyCart').innerHTML = 'Wishlist is empty :-('
+        document.getElementById('subtotal').innerHTML = ''
     } else {
         document.getElementById('emptyCart').innerHTML = 'Your wishlist'
+        document.getElementById('subtotal').innerHTML = `Subtotal ${(ecommerceApp.totalCartValue*ecommerceApp.currency[ecommerceApp.currencyId]).toFixed(2)} ${ecommerceApp.currencyId}`
     }
 
     // set cartArrayCount to the number of keys in cartArray

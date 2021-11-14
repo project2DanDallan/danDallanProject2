@@ -225,6 +225,12 @@ div.cartList {
             order: 2;
             padding:1em;
         }
+        .cartItemPrice {
+            order: 4;
+            padding:1em;
+            text-align: right;
+            margin-left: auto;
+        }
 
         .removeItem {
             cursor: pointer;

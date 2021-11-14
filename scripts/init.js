@@ -68,6 +68,10 @@ ecommerceApp.callCurrencyApi = () => {
             }
             ecommerceApp.currencyId = localStorage.getItem("currencyId");
 
+//             const currencySelection = document.getElementById('currencySelection');
+// // currencySelection.value = ecommerceApp.currencyId;
+// console.log(ecommerceApp.currencyId)
+// console.log('h')
         })
         // catch and log any errors related to api call
         .catch(function(error) {
@@ -120,15 +124,33 @@ ecommerceApp.removeDuplicates = function(arr, comp) {
     return unique;
 }
 
-// function to redirect the page to another file
-ecommerceApp.redirect = function(page) {
-    window.location.assign(`./${page}.html`);
+ecommerceApp.errorPage = function(element) {
+    /*
+    pass the element you want to overwrite innerText
+    display 404 error
+    */
+   element.innerHTML = `
+   <aside class="testbg"></aside>
+   <div class="container" id="productPageContainer">
+        
+            <section class="error"> 
+                <div class="error404">
+                    <h1>404</h1>                
+                    <h2>Uh oh, you broke the website. :-(</h2>
+                    <p>We tried to process your request, but we couldn't find the page you were looking for. You may find what you are looking for on our home page</p>
+                </div>
+            </section>
+   </div>
+   <aside class="testbg"></aside>
+   `
 }
 
 // display related products and product listings in the gallery
 ecommerceApp.displayProducts = function(productArray, getUrl = null) {
     
     document.querySelector('#productListings').innerText = '';
+
+    
 
     productArray.forEach((elem, index) => {
         
@@ -138,6 +160,9 @@ ecommerceApp.displayProducts = function(productArray, getUrl = null) {
         }
 
         ecommerceApp.displayedProducts.push(elem);
+
+        
+        
         
         // select #productGallery container
         productListings = document.querySelector('#productListings');
@@ -194,8 +219,15 @@ ecommerceApp.displayProducts = function(productArray, getUrl = null) {
         cardContainer.appendChild(cardLink);
         // appending the newly created elements to to related products container
         productListings.appendChild(cardContainer);
-    
+        
     });
+
+    // check if array is empty
+    if(ecommerceApp.displayedProducts.length < 1) {
+        // select #productGallery container
+        productListings = document.querySelector('#productListings');
+        productListings.innerHTML = '<h1 class=">No products to show :-(</h1>';
+    }
     
 }
 
