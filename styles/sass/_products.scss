@@ -1,0 +1,230 @@
+section.products {
+    display: flex;
+    // display:grid;
+    // grid-template-columns: 1fr 3fr;
+    // gap:1em;
+    .productListings{
+        flex:3
+    }
+    .filterPanelMobile {
+        display:none;
+    }
+
+    .filterPanel {
+        flex: 1;
+        margin-right: 1em;
+        // background:blue;
+        // position:relative;
+        .filterSettings {
+            padding:1em;
+            display:flex;
+            flex-direction: column;
+            align-items: flex-start;
+            
+            h3 {
+                @include openSans(1.25rem, 1.25rem, 0.3px, $charcoal, 'normal');
+                margin-left:.33em;
+            }
+
+            h2 {
+                @include openSans(1.33rem, 1.33rem, 0.3px, $charcoal, 'normal');
+                margin-left:.33em;
+                margin-bottom:1em;
+            }
+            .ratingsContainer {
+                margin-bottom:1em;
+            }
+
+            ul {
+                list-style: none;
+                margin:0;
+                padding:0;
+                li {
+                    margin:1em;
+                }
+                margin-bottom:1.5em;
+            }
+            // position: fixed;
+            div.ratings {
+                color:#333;
+                display:flex;
+                flex-direction: row;
+                align-content: flex-start;
+                .checked {
+                    color:goldenrod;
+                }
+                margin:1em;
+            }
+            .underline {
+                position: relative;
+            }
+            .underline::before {
+                // border:2px orange solid;
+                content: '';
+                position: absolute;
+                background:purple;
+                height:100%;
+                width:125%;
+                // top:0;
+                // right:0;
+                left:-.5em;
+                bottom:0;
+                z-index:-1;
+                opacity: .2;
+
+                clip-path: polygon(100% 33%, 95% 92%, 0 100%, 5% 44%);            }
+            
+        }
+    }   
+
+    .productListings {
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+        gap:2em;
+        grid-auto-rows: 1fr;
+        align-self: flex-start;
+    
+        div {
+            background-color: white;
+            border-radius: 10px;
+            padding:1em;
+            
+            // display:flex;
+            // flex-direction: column;
+            // justify-content: space-between;
+            a {
+                display:flex;
+                flex-direction: column;
+                height: 100%;
+    
+                
+                    
+                    div.productImage {
+                        height: 15.625em;
+                        padding:0;
+                        // height:50%;
+                        display:flex;
+                        justify-content: center;
+                        
+                        img {
+                            max-height:100%;
+                        }
+                    }
+    
+                    div.productCardContainer {
+                        margin-top:1em;
+                        display:flex;
+                        flex-direction: column;
+                        flex-grow: 1;
+                        justify-content: space-between;
+    
+                        div.productTitle, div.productPrice, div.productRating {
+                            padding:0;
+                        }
+    
+                        div.productTitle {
+                            font-size:1.25rem;
+                            line-height: 1.25rem;
+                            letter-spacing: 0.75px;
+                            margin-bottom:1em;
+                        }
+    
+                        div.cardRatePriceContainer {
+                            padding:0;
+                            display:flex;
+                            flex-direction: column;
+                            font-size:1.25rem;
+    
+                            div.productRating {
+                                font-size:1rem;
+                                line-height:1rem;
+                                letter-spacing:0.75px;
+                                margin-bottom:1em; 
+                            }
+    
+                            div.productPrice {
+                                font-size:1.5rem;
+                                line-height:1rem;
+                                font-weight: bold;
+                                letter-spacing:0.75px;
+                                margin-bottom:1em; 
+                            }
+                        }
+                    }
+    
+            }
+        }
+    }
+
+    // @media screen and (max-width: 705px) {
+    //     .productListings {
+    //         display:grid;
+    //         grid-template-columns: 1fr;
+    //     }
+    // }
+}
+
+@media screen and (max-width: 900px) {
+    section.products {
+        padding:1em;
+        
+        .productListings {
+            display:grid;
+            grid-template-columns: repeat(2,1fr);
+        }
+    }   
+}
+
+@media screen and (max-width: 705px) {
+    section.products {
+        padding:1em;
+        grid-template-columns: 1fr;
+        
+        .productListings {
+            display:grid;
+            grid-template-columns: repeat(2,1fr);
+        }
+    }   
+}
+
+@media screen and (max-width: 450px) {
+    section.products {
+
+        grid-template-columns: 1fr;
+        padding:1em;
+
+        .productListings {
+            display:grid;
+            grid-template-columns: 1fr;
+            justify-content: center;
+        }
+    }
+    
+}
+
+@media screen and (max-width:705px) {
+
+    .filterPanel {
+	    position: fixed;
+		  left: -205px;
+		  transition: 0.3s;
+		  z-index: 1;
+		  text-decoration: none;
+		  border-radius: 0 5px 5px 0;
+		  background: #999;
+		  opacity: .95;
+    }
+    .filterPanel::after {
+	    content: ''; position: absolute;
+	    width: 0; height: 0; right: -60px; top: 15px;
+	    border-top: 30px solid transparent;
+	    border-left: 60px solid #999;
+	    border-bottom: 30px solid transparent;
+	    opacity: 1;
+		}
+        .filterPanel:hover {
+            left: 0;
+        }
+
+        
+}

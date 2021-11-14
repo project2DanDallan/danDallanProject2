@@ -1,0 +1,196 @@
+
+
+// product page
+section.product {
+    // background:paleturquoise;
+
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap:3em;
+    padding:2em;
+    background:white;
+
+    
+    
+    div.image {
+        max-width: 75%;
+        margin: 0 auto;
+    }
+
+    
+    article {
+        display:flex;
+        flex-direction: column;
+        * {
+            margin:.5em 0;
+        }
+        div.productDesc {
+            @include openSans(1rem, 1.5rem, 1px, $charcoal, 'normal');
+        }
+    }
+    h1.productTitle {
+        // font-family: 'Montserrat', sans-serif;
+        @include openSans(2rem, 2.5rem, 0.3px, $charcoal, 'normal');
+        // letter-spacing: 1px;
+        margin-bottom:1em;
+    }
+    div.productRating {
+        @include openSans(1.25rem, 1.25rem, 0.3px, $charcoal, 'normal');
+    }
+    h2.productPrice {
+        // font-family: 'Montserrat', sans-serif;
+        @include openSans(1.5rem, 1.5rem, 0.3px, $charcoal);
+        margin-bottom:.75em;
+        // letter-spacing: 1px;
+        margin-bottom:1.5em;
+    }
+
+    h2 {
+        // font-family: 'Montserrat', sans-serif;
+        @include openSans(1.5rem, 1.5rem, 0.3px, $charcoal, 'normal');
+        margin-top:2.5em;
+        margin-bottom:1em;
+        // letter-spacing: 1px
+    }
+
+    button.addTo {
+        border:none;
+        padding:1em 2em;
+        background:#999;
+        cursor: pointer;
+    }
+    button.addTo:hover {
+        background:#ccc;
+    }
+}
+
+
+.relatedProductsBG {
+    background-color: #ccc;
+}
+
+.greybg {
+    background:grey;
+}
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+    section.product {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+section.relatedProducts {
+
+    margin:5em 0;
+
+    h2 {
+        // font-family: 'Montserrat', sans-serif;
+        @include openSans(1.5rem, 1.5rem, 0.3px, $charcoal, 'normal');
+        margin-bottom:.75em;
+        // letter-spacing: 1px;
+        text-align: center;
+        margin-bottom:2.5em;
+    }
+
+    .products {
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+        gap:2em;
+        grid-auto-rows: 1fr;
+        width:75%;
+        margin:0 auto;
+        
+
+        div {
+            background-color: white;
+            border-radius: 10px;
+            padding:1em;
+            
+            // display:flex;
+            // flex-direction: column;
+            // justify-content: space-between;
+            a {
+                display:flex;
+                flex-direction: column;
+                height: 100%;
+    
+                
+                    
+                    div.productImage {
+                        height: 15.625em;
+                        padding:0;
+                        // height:50%;
+                        display:flex;
+                        justify-content: center;
+                        
+                        img {
+                            max-height:100%;
+                        }
+                    }
+    
+                    div.productCardContainer {
+                        margin-top:1em;
+                        display:flex;
+                        flex-direction: column;
+                        flex-grow: 1;
+                        justify-content: space-between;
+    
+                        div.productTitle, div.productPrice, div.productRating {
+                            padding:0;
+                        }
+    
+                        div.productTitle {
+                            font-size:1.25rem;
+                            line-height: 1.25rem;
+                            letter-spacing: 0.75px;
+                            margin-bottom:1em;
+                        }
+    
+                        div.cardRatePriceContainer {
+                            padding:0;
+                            display:flex;
+                            flex-direction: column;
+                            font-size:1.25rem;
+    
+                            div.productRating {
+                                font-size:1rem;
+                                line-height:1rem;
+                                letter-spacing:0.75px;
+                                margin-bottom:1em; 
+                            }
+    
+                            div.productPrice {
+                                font-size:1.5rem;
+                                line-height:1rem;
+                                font-weight: bold;
+                                letter-spacing:0.75px;
+                                margin-bottom:1em; 
+                            }
+                        }
+                    }
+    
+            }
+        }
+    }
+}
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+    section.relatedProducts {
+        .products {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 600px) {
+    section.relatedProducts {
+        .products {
+            grid-template-columns: 1fr;
+        }
+    }
+}

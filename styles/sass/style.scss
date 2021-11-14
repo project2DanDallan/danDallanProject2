@@ -1,0 +1,22 @@
+@import 'normalize';
+@import 'landingPage';
+@import 'product';
+@import 'header';
+@import 'products';
+
+/* Page container */
+.container {
+    display: grid;
+    grid-template-columns:1fr calc(min(1250px, 100%)) 1fr;
+}
+.container > section, .container > div {
+    grid-column: 2;
+}
+.fullBleed {
+    max-width: 100%;
+    grid-column: 1 / 4;
+}
+
+.testbg {
+    background:white;
+}

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&family=Mochiy+Pop+One&display=swap" rel="stylesheet"> 
+
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- header and menus -->
+        <header class="fullBleed topbar">
+            
+            <div class="icon" id="navLink"><i id="navIcon" class="fas fa-bars"></i></div>
+            <div id="navMenu" class="menu navMenu">
+                
+                <div class="menuContent right">
+
+                    <div>
+                        <div class="icon" id="navMenuLink"><i id="navIcon" class="fas fa-times"></i></div>
+                    </div>
+
+                    <div class="menuLinks menuContentElement">
+                        <div class="menuLogo">
+                            <img class="logoImage" src="./assets/logo.png">
+                        </div>
+                        
+                        <a class="menuLink" href="./index.html">HOME</a>
+                        <a class="menuLink" href="./products.html">PRODUCTS</a>
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="menuOverlay" id="navMenuOverlay"></div>
+            </div>
+            
+
+            <div><img class="logoImage hideLogo" src="./assets/logo.png"></div>
+            
+            <div class="icon" id="cartLink"><i id="cartIcon" class="fas fa-shopping-bag"></i></div>
+            <div id="cartMenu" class="menu cartMenu">
+                <div class="menuContent left">
+
+                    <div>
+                        <div class="icon" id="cartMenuLink"><i id="cartIcon" class="fas fa-times"></i></div>
+                    </div>
+
+                    <div class="menuLinks menuContentElement">
+                        <span id="emptyCart"></span>
+                        <div id="wishlist" class="cartList">
+
+                        </div>
+                    </div>
+                    
+            
+                </div>
+                <div class="menuOverlay order" id="cartMenuOverlay"></div>
+
+            </div>
+            
+        </header>
+
+    </div>
+
+    <div class="container">
+
+        <aside class="testbg"></aside>
+
+        <!-- product details -->
+        <section class="product">
+            
+            <!-- product image -->
+            <div class="image">
+                <img id="productImg">
+            </div>
+            
+            <!-- product details -->
+            <article>
+                <!-- product title -->
+                <h1 class="productTitle" id="productTitle"></h1>
+
+                <!-- product rating -->
+                <div class="productRating" id="productRating"></div>
+
+                <!-- product price -->
+                <h2 class="productPrice" id="productPrice"></h2>
+
+                <!-- quantity and add to cart -->
+                <button class="addTo" id="addTo">Add to wishlist</button>
+
+                <!-- product description -->
+                <h2>Product description</h2>
+                <div id="productDesc" class="productDesc"></div>
+
+            </article>
+
+        </section>
+        <aside class="testbg"></aside>
+
+        <aside class="relatedProductsBG"></aside>
+        <section class="relatedProducts">
+            
+            <h2>Related products</h2>
+
+            <div class="products" id="productListings">
+
+            </div>
+
+        </section>
+        <aside class="relatedProductsBG"></aside>
+
+        <footer class= 'fullBleed'>
+            <p>Created at Juno College 2021</p>
+        </footer>
+
+    </div>
+    
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-database.js"></script>
+
+    <!-- Initial app call -->
+    <script src="./scripts/init.js"></script>
+
+    <!-- Header js functionality -->
+    <script src='./scripts/header.js'></script>
+    
+    <script>
+        
+        ecommerceApp.checkProduct = function() {
+         
+            // check if there are arguments in the url
+            let url = window.location.href;
+            if(url.includes('?')){
+
+                // storing the url parameter value of "id"
+                url = url.substring(url.length,url.indexOf('=')+1);
+
+                // using regex to create a condition of only numberic values to follow
+                const numericCondition = /^\d+$/;
+
+                // check if id parameter is numerical
+                if (numericCondition.test(url)) {
+
+                    // check if url is greater than 0 but less than max number of available products
+                    if(url < ecommerceApp.products.length && url > 0) {
+                        
+                        // test and log the array
+                        console.log(ecommerceApp.products)
+                        
+                        // get index of product by id number
+                        const index = ecommerceApp.products.findIndex(p => p.id == url);
+
+                        // declare ids as variables
+                        const productImg = document.getElementById('productImg');
+                        productImg.src = ecommerceApp.products[index].image;
+                        
+                        const productTitle = document.getElementById('productTitle');
+                        productTitle.innerText = ecommerceApp.products[index].title
+
+                        const productPrice = document.getElementById('productPrice');
+                        productPrice.innerText = ecommerceApp.products[index].price
+
+                        const productRating = document.getElementById('productRating');
+                        productRating.innerText = `${ecommerceApp.products[index].rating.rate} (${ecommerceApp.products[index].rating.count} ratings)`
+                        
+                        const productDesc = document.getElementById('productDesc');
+                        productDesc.innerText = ecommerceApp.products[index].description
+                        
+                        //testing purposes remove later
+                        console.log(ecommerceApp.products[index].category)
+
+                        
+                        // related products
+                        ecommerceApp.productsByCategory = []; // store all products with specified category
+                        ecommerceApp.productListings = []; // store limited number of products with specified category
+
+                        // iterate through products array
+                        for(let i = 0 ; i < ecommerceApp.products.length ; i++) {
+                            // if a product is equal to the product page cateogry BUT not the same product we are currently viewing then push to productsByCategory array
+                            if(ecommerceApp.products[i].category === ecommerceApp.products[index].category && ecommerceApp.products[i].id != ecommerceApp.products[index].id) {
+                                ecommerceApp.productsByCategory.push(ecommerceApp.products[i])
+                            }
+                        }
+
+                        // remove the product thats currently being viewed out of related products
+
+                        // randomize the productsByCategory array and take the first 3 objects
+                        ecommerceApp.productListings = ecommerceApp.productsByCategory
+                        .map(x => ({ x, r: Math.random() }))
+                        .sort((a, b) => a.r - b.r)
+                        .map(a => a.x)
+                        .slice(0, 3);
+
+                        ecommerceApp.displayProducts(ecommerceApp.productListings, ecommerceApp.products[index].category);
+                    
+                        const addToWishlist = document.getElementById('addTo')
+
+                        // event listener for shopping cart and nav icon
+                        addToWishlist.addEventListener('click', function() {
+                            ecommerceApp.addToWishlist(ecommerceApp.products[index].id,ecommerceApp.products[index].title,ecommerceApp.products[index].image,1);
+                        });
+
+                    } else {
+                        // redirect to 404 page
+                        ecommerceApp.redirect('404');
+                    }
+                } else {
+                    // redirect to 404 page
+                    ecommerceApp.redirect('404');
+                }
+            
+            } else {
+                // redirect to products page
+                ecommerceApp.redirect('products');
+            }
+
+        }
+
+        
+
+    
+
+    
+
+    
+    
+
+        ecommerceApp.addToWishlist = function(itemId,item,image,quantity) {
+
+            const id = `${itemId}`;
+            const itemLists = {};
+            itemLists[id] = {
+                id: itemId,
+                title: item,
+                image: image,
+                quantity: quantity
+            }
+
+            // update current wishlist
+            ecommerceApp.updateWishlist();
+
+            //push to firebase our new itemLists.
+            // ecommerceApp.dbRef.push(toDoObj);
+            return firebase.database().ref(`/${ecommerceApp.cartId}`).update(itemLists)
+        }
+    </script>
+    
+</body>
+</html>
