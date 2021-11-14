@@ -84,7 +84,17 @@ currencySelection.addEventListener("change", function(e) {
     console.log(currencySelection.value)
     localStorage.setItem('currencyId',currencySelection.value)
     ecommerceApp.currencyId = localStorage.getItem("currencyId");
-    ecommerceApp.checkProduct();
+    if(typeof ecommerceApp.checkProduct === "function") {
+        // run the function only if function exists
+        ecommerceApp.checkProduct()
+    }
+
+    if(typeof ecommerceApp.productGallery === "function") {
+        // run the function only if function exists
+        ecommerceApp.productGallery()
+    }
+
+
 });
 // ecommerceApp.currencySelection = function()
 
