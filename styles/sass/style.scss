@@ -20,3 +20,26 @@
 .testbg {
     background:white;
 }
+
+// product page
+section.error {
+    // background:paleturquoise;
+
+    display:flex;
+    padding:2em;
+    background:white;
+
+    .error404 {
+        text-align: center;
+        margin:5em auto;
+        h1 {
+            font-size:5rem;
+            color:darkturquoise;
+            margin-bottom:1em;
+        }
+        p {
+            margin-top:5em;
+        }
+    }
+
+}

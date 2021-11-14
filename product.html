@@ -69,9 +69,8 @@
 
                     <div class="menuLinks menuContentElement">
                         <span id="emptyCart"></span>
-                        <div id="wishlist" class="cartList">
-
-                        </div>
+                        <div id="wishlist" class="cartList"></div>
+                        <span id="subtotal"></span>
                     </div>
                     
             
@@ -84,7 +83,7 @@
 
     </div>
 
-    <div class="container">
+    <div class="container" id="productPageContainer">
 
         <aside class="testbg"></aside>
 
@@ -151,6 +150,9 @@
         
         ecommerceApp.checkProduct = function() {
          
+            // storage main container in variable
+            const error404 = document.getElementById('productPageContainer')
+            
             // check if there are arguments in the url
             let url = window.location.href;
             if(url.includes('?')){
@@ -220,16 +222,16 @@
 
                         // event listener for shopping cart and nav icon
                         addToWishlist.addEventListener('click', function() {
-                            ecommerceApp.addToWishlist(ecommerceApp.products[index].id,ecommerceApp.products[index].title,ecommerceApp.products[index].image,1);
+                            ecommerceApp.addToWishlist(ecommerceApp.products[index].id,ecommerceApp.products[index].title,ecommerceApp.products[index].image,ecommerceApp.products[index].price);
                         });
 
                     } else {
-                        // redirect to 404 page
-                        ecommerceApp.redirect('404');
+                        // throw 404 error
+                        ecommerceApp.errorPage(error404);
                     }
                 } else {
-                    // redirect to 404 page
-                    ecommerceApp.redirect('404');
+                    // throw 404 error
+                    ecommerceApp.errorPage(error404);
                 }
             
             } else {
@@ -239,7 +241,7 @@
 
         }
 
-        ecommerceApp.addToWishlist = function(itemId,item,image,quantity) {
+        ecommerceApp.addToWishlist = function(itemId,item,image,price) {
 
             const id = `${itemId}`;
             const itemLists = {};
@@ -247,7 +249,7 @@
                 id: itemId,
                 title: item,
                 image: image,
-                quantity: quantity
+                price: price
             }
 
             // update current wishlist

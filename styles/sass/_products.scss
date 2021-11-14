@@ -4,7 +4,13 @@ section.products {
     // grid-template-columns: 1fr 3fr;
     // gap:1em;
     .productListings{
-        flex:3
+        flex:3;
+        h1 {
+            grid-column: 1 / 3;
+            text-align: center;
+            margin-top:.5em;
+            @include openSans(2rem, 2rem, 0.5px, $charcoal, 'normal');
+        }
     }
     .filterPanelMobile {
         display:none;
