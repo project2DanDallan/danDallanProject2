@@ -79,18 +79,7 @@ navMenuOverlay.addEventListener('click', function() {
 
 const ulElement = document.getElementById('wishlist');
 
-
-
-// for(prop in ecommerceApp.cartArray) {
-//     const listItemElement = document.createElement('li');
-//     listItemElement.innerHTML = `<i class="far fa-square"></i>`;
-//     console.log(prop)
-//     // listItemElement.appendChild(document.createTextNode(toDoData[prop]));
-
-//     arrayOfToDos.push(listItemElement.outerHTML);
-// };
 ecommerceApp.displayWishlist = function(cartArray) {
-    // console.log(ecommerceApp.cartArray);
 
     ulElement.innerHTML = '';
 
@@ -121,14 +110,8 @@ ecommerceApp.displayWishlist = function(cartArray) {
         listItemElement.appendChild(cartItemImgContainer);
         listItemElement.appendChild(cartItemTitle);
 
-        // add to li
-        // listItemElement.appendChild(document.createTextNode(cartArray[prop]));
-        
-        // add to ul
+        // add to div
         ulElement.appendChild(listItemElement)
-        
-        // arrayOfToDos.push(listItemElement.outerHTML);
-        // console.log(cartArray[prop]);
 
     };
 
@@ -140,7 +123,15 @@ ecommerceApp.displayWishlist = function(cartArray) {
         item.addEventListener("click", function(e) {
             const itemToRemove = item.getAttribute('data-id');
             firebase.database().ref(`/${ecommerceApp.cartId}`).child(itemToRemove).remove()
+            // ecommerceApp.cartArrayCount = ecommerceApp.cartArrayCount - 1
+
+            if(cartArray === null) {
+                ecommerceApp.cartArrayCount = 0;
+                console.log('im null')
+            }
+
             ecommerceApp.updateWishlist();
+            
         });
 
     })
@@ -153,13 +144,21 @@ ecommerceApp.displayWishlist = function(cartArray) {
     }
 
     // set cartArrayCount to the number of keys in cartArray
-    ecommerceApp.cartArrayCount = Object.keys(cartArray).length
-      
+    if(cartArray !== null) {
+        ecommerceApp.cartArrayCount = Object.keys(cartArray).length
+        console.log('not null')
+    } else {
+        ecommerceApp.cartArrayCount = 0;
+    }
+
+    // create cart menu notification if cart array count is more than 0
     if(ecommerceApp.cartArrayCount > 0) {
         const cartArrayCountNotif = document.createElement('span');
         cartArrayCountNotif.classList.add('cartArrayCount');
         cartArrayCountNotif.innerHTML = ecommerceApp.cartArrayCount;
         document.getElementById('cartIcon').appendChild(cartArrayCountNotif)
+    } else {
+        document.getElementById('cartIcon').innerHTML = '';
     }
 
       

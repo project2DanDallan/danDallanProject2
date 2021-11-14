@@ -45,11 +45,11 @@ ecommerceApp.cartId = localStorage.getItem("cartId");
 // update wishlist function
 ecommerceApp.updateWishlist = function() {
     firebase.database().ref(ecommerceApp.cartId).once("value", data => {
-        ecommerceApp.cartArray = data.val();
-        
+        ecommerceApp.cartArray = data.val();  
         ecommerceApp.displayWishlist(ecommerceApp.cartArray);
     })
 }
+// setInterval(ecommerceApp.updateWishlist, 1);
 
 // fetch and store data using api call
 ecommerceApp.callApi = () => {

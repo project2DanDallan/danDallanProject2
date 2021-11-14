@@ -11,8 +11,8 @@
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">     
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">     
 
 </head>
 <body>
@@ -33,12 +33,15 @@
                         <div class="icon" id="navMenuLink"><i id="navIcon" class="fas fa-times"></i></div>
                     </div>
 
-                    <div class="menuLinks">
+                    <div class="menuLinks menuContentElement">
                         <div class="menuLogo">
                             <img class="logoImage" src="./assets/logo.png">
                         </div>
-                        <a href="./index.html">HOME</a>
-                        <a href="./products.html">PRODUCTS</a>
+                        
+                        <a class="menuLink" href="./index.html">HOME</a>
+                        <a class="menuLink" href="./products.html">PRODUCTS</a>
+                        
+                        
                     </div>
 
                 </div>
@@ -56,8 +59,11 @@
                         <div class="icon" id="cartMenuLink"><i id="cartIcon" class="fas fa-times"></i></div>
                     </div>
 
-                    <div class="menuLinks">
-                        <span>Shopping cart is empty</span>
+                    <div class="menuLinks menuContentElement">
+                        <span id="emptyCart"></span>
+                        <div id="wishlist" class="cartList">
+
+                        </div>
                     </div>
                     
             

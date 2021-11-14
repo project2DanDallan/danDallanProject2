@@ -228,15 +228,6 @@
 
         }
 
-        
-
-    
-
-    
-
-    
-    
-
         ecommerceApp.addToWishlist = function(itemId,item,image,quantity) {
 
             const id = `${itemId}`;
@@ -252,7 +243,6 @@
             ecommerceApp.updateWishlist();
 
             //push to firebase our new itemLists.
-            // ecommerceApp.dbRef.push(toDoObj);
             return firebase.database().ref(`/${ecommerceApp.cartId}`).update(itemLists)
         }
     </script>
