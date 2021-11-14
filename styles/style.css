@@ -1075,7 +1075,7 @@ header.topbar .menu .menuContent {
   padding: 2em;
   display: grid;
 }
-header.topbar .menu .menuContent .menuLinks .menuLink, header.topbar .menu .menuContent .menuLinks span {
+header.topbar .menu .menuContent .menuLinks .menuLink, header.topbar .menu .menuContent .menuLinks .select, header.topbar .menu .menuContent .menuLinks span {
   font-family: "Open Sans", sans-serif;
   font-size: 2.5rem;
   line-height: 2.5rem;
@@ -1095,6 +1095,11 @@ header.topbar .menu .menuContent .menuLinks .menuLogo {
 }
 header.topbar .menu .menuContent .menuLinks .menuLogo img {
   margin: 0;
+}
+header.topbar .menu .menuContent .menuLinks .select {
+  border: none;
+  background: transparent;
+  width: 20%;
 }
 header.topbar .menu .menuContent .menuContentElement {
   -webkit-box-pack: center;

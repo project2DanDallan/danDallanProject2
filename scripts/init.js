@@ -3,7 +3,7 @@ const ecommerceApp = {};
 
 // storing our api url
 ecommerceApp.url = 'https://fakestoreapi.com/products';
-
+ecommerceApp.urlCurrency = 'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,EUR,CAD'
 ecommerceApp.products = '';
 ecommerceApp.displayedProducts = []; // empty array to manipulate by filtering results on products.html
 ecommerceApp.filterProductsByRating = [];
@@ -49,7 +49,31 @@ ecommerceApp.updateWishlist = function() {
         ecommerceApp.displayWishlist(ecommerceApp.cartArray);
     })
 }
-// setInterval(ecommerceApp.updateWishlist, 1);
+setInterval(ecommerceApp.updateWishlist, 5000);
+
+// fetch and store currency conversion data
+ecommerceApp.callCurrencyApi = () => {
+    fetch(ecommerceApp.urlCurrency)
+        .then(res=>res.json())
+        .then(json=> {
+            ecommerceApp.currency = json;
+
+            ecommerceApp.currency.USD = ecommerceApp.currency.USD / ecommerceApp.currency.CAD
+            ecommerceApp.currency.EUR = ecommerceApp.currency.EUR / ecommerceApp.currency.CAD  
+            ecommerceApp.currency.CAD = 1;
+
+            // set new cartId to localstorage only if there isnt already a cartId
+            if(!localStorage.getItem("currencyId")) {
+                localStorage.setItem("currencyId", 'CAD');
+            }
+            ecommerceApp.currencyId = localStorage.getItem("currencyId");
+
+        })
+        // catch and log any errors related to api call
+        .catch(function(error) {
+            console.log(error);
+        });
+}
 
 // fetch and store data using api call
 ecommerceApp.callApi = () => {
@@ -156,7 +180,7 @@ ecommerceApp.displayProducts = function(productArray, getUrl = null) {
         // product card price
         const cardPrice = document.createElement('div');
         cardPrice.classList.add('productPrice');
-        cardPrice.innerText = elem.price;
+        cardPrice.innerText = `${(elem.price*ecommerceApp.currency[ecommerceApp.currencyId]).toFixed(2)} ${ecommerceApp.currencyId}`;
 
         // appending the newly created elements to the card containers
         cardLink.appendChild(cardImageContainer);
@@ -210,6 +234,7 @@ ecommerceApp.filterByRating = function (array, rating, price) {
 // perform api call
 ecommerceApp.init = function() {
     ecommerceApp.callApi();
+    ecommerceApp.callCurrencyApi();
     ecommerceApp.updateWishlist();
     
 }

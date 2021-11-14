@@ -91,7 +91,7 @@ header.topbar {
             
 
             .menuLinks {
-                .menuLink, span{
+                .menuLink, .select, span{
                     @include openSans(2.5rem, 2.5rem, 0.3px, white, 'normal');
                 }
                 .menuLogo {
@@ -103,6 +103,12 @@ header.topbar {
                         margin:0;
                     }
                 }
+                .select {
+                    border:none;
+                    background:transparent;
+                    width:20%;
+                }
+                 
                 
             }
             .menuContentElement {

@@ -77,6 +77,17 @@ navMenuOverlay.addEventListener('click', function() {
     ecommerceApp.toggleNav();
 });
 
+
+const currencySelection = document.getElementById('currencySelection');
+
+currencySelection.addEventListener("change", function(e) {
+    console.log(currencySelection.value)
+    localStorage.setItem('currencyId',currencySelection.value)
+    ecommerceApp.currencyId = localStorage.getItem("currencyId");
+    ecommerceApp.checkProduct();
+});
+// ecommerceApp.currencySelection = function()
+
 const ulElement = document.getElementById('wishlist');
 
 ecommerceApp.displayWishlist = function(cartArray) {
