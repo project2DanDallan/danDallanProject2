@@ -17,35 +17,37 @@
 </head>
 <body>
 
-    
-    
     <div class="container">
 
         <!-- header and menus -->
-        <header class="fullBleed topbar">
+        <header role="banner" class="fullBleed topbar">
             
-            <div class="icon" id="navLink"><i id="navIcon" class="fas fa-bars"></i></div>
-            <div id="navMenu" class="menu navMenu">
+            <div class="icon" id="navLink"><i id="navIcon" class="fas fa-bars" aria-label="navigation menu icon"></i></div>
+            <div role="navigation" id="navMenu" class="menu navMenu">
                 
                 <div class="menuContent right">
 
                     <div>
-                        <div class="icon" id="navMenuLink"><i id="navIcon" class="fas fa-times"></i></div>
+                        <div class="icon" id="navMenuLink"><i id="navIcon" class="fas fa-times" aria-label="close navigation menu"></i></div>
                     </div>
 
                     <div class="menuLinks menuContentElement">
-                        <div class="menuLogo">
+                        <div class="menuLogo" aria-label="menu logo">
                             <img class="logoImage" src="./assets/logo.png">
                         </div>
                         
-                        <a class="menuLink" href="./index.html">HOME</a>
-                        <a class="menuLink" href="./products.html">PRODUCTS</a>
+                        <a class="menuLink" href="./index.html" aria-label="home page">HOME</a>
+                        <a class="menuLink" href="./products.html" aria-label="products page">PRODUCTS</a>
                         
-                        <select id="currencySelection" name="currencySelection" class="select">
-                            <option value="CAD">CAD</option>
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                        </select>
+                        <div class="labelWrap">
+                            <select id="currencySelection" name="currencySelection" class="select fas fa-chevron-down" aria-label="currency selection">
+                                <option selected value="CAD">CAD</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                         
                         
                     </div>
@@ -56,25 +58,21 @@
             
             <!-- logo -->
             <div>
-                <img class="logoImage hideLogo" src="./assets/logo.png">
-            
-                
-
+                <a href="./index.html" aria-label="home page"><img class="logoImage hideLogo" src="./assets/logo.png" aria-label="logo"></a>
             </div>
             
-            <div class="icon" id="cartLink"><i id="cartIcon" class="fas fa-shopping-bag"></i></div>
-            <div id="cartMenu" class="menu cartMenu">
+            <div class="icon" id="cartLink"><i id="cartIcon" class="fas fa-shopping-bag" aria-label="wishlist menu"></i></div>
+            <div role="complementary" id="cartMenu" class="menu cartMenu">
                 <div class="menuContent left">
 
                     <div>
-                        <div class="icon" id="cartMenuLink"><i id="cartIcon" class="fas fa-times"></i></div>
+                        <div class="icon" id="cartMenuLink"><i id="cartIcon" class="fas fa-times" aria-label="close wishlist menu"></i></div>
                     </div>
 
-                    <div class="menuLinks menuContentElement">
-                        <span id="emptyCart"></span>
-                        <div id="wishlist" class="cartList">
-
-                        </div>
+                    <div class="menuLinks menuContentElement" aria-label="wishlist items">
+                        <span id="emptyCart" aria-label="empty cart option"></span>
+                        <div id="wishlist" class="cartList"></div>
+                        <span id="subtotal" aria-label="subtotal"></span>
                     </div>
                     
             

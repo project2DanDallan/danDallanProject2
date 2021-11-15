@@ -79,9 +79,7 @@ navMenuOverlay.addEventListener('click', function() {
 
 
 const currencySelection = document.getElementById('currencySelection');
-// currencySelection.value = ecommerceApp.currencyId;
-// console.log(ecommerceApp.currencyId)
-// console.log('h')
+currencySelection.value = ecommerceApp.currencyId; // pre select whats in our localstorage
 
 currencySelection.addEventListener("change", function(e) {
     console.log(currencySelection.value)
@@ -198,7 +196,7 @@ ecommerceApp.displayWishlist = function(cartArray) {
     }
 
       
-      
+    
 
     //   document.getElementById('cartArrayCount').innerHTML = ecommerceApp.cartArrayCount
     // cartArray.forEach((elem, index) => {
