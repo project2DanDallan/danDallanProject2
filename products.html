@@ -111,53 +111,53 @@
 
                     <div class="ratingsContainer">
                         <!-- 4 stars and up -->
-                        <div class="ratings" id="4">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
+                        <div tabindex="0" aria-label='4 stars and up' class="ratings" id="4">
+                            <span aria-label='filled in star' class="fa fa-star checked"></span>
+                            <span aria-label='filled in star' class="fa fa-star checked"></span>
+                            <span aria-label='filled in star' class="fa fa-star checked"></span>
+                            <span aria-label='filled in star' class="fa fa-star checked"></span>
+                            <span aria-label='empty star' class="fa fa-star"></span>
                             <span> & Up</span>
                         </div>
 
                         <!-- 3 stars and up -->
-                        <div class="ratings" id="3">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
+                        <div tabindex="0" aria-label='3 stars and up' class="ratings" id="3">
+                            <span aria-label='filled in star' class="fa fa-star checked"></span>
+                            <span aria-label='filled in star' class="fa fa-star checked"></span>
+                            <span aria-label='filled in star' class="fa fa-star checked"></span>
+                            <span aria-label='empty star' class="fa fa-star"></span>
+                            <span aria-label='empty star' class="fa fa-star"></span>
                             <span> & Up</span>
                         </div>
 
                         <!-- 2 stars and up -->
-                        <div class="ratings" id="2">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
+                        <div tabindex="0" aria-label='2 stars and up' class="ratings" id="2">
+                            <span aria-label='filled in star' class="fa fa-star checked"></span>
+                            <span aria-label='filled in star' class="fa fa-star checked"></span>
+                            <span aria-label='empty star' class="fa fa-star"></span>
+                            <span aria-label='empty star' class="fa fa-star"></span>
+                            <span aria-label='empty star' class="fa fa-star"></span>
                             <span> & Up</span>
                         </div>
 
                         <!-- 1 stars and up -->
-                        <div class="ratings" id="1">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
+                        <div tabindex="0" aria-label='1 stars and up' class="ratings" id="1">
+                            <span aria-label='filled in star' class="fa fa-star checked"></span>
+                            <span aria-label='empty star' class="fa fa-star"></span>
+                            <span aria-label='empty star' class="fa fa-star"></span>
+                            <span aria-label='empty star' class="fa fa-star"></span>
+                            <span aria-label='empty star' class="fa fa-star"></span>
                             <span> & Up</span>
                         </div>
                     </div>
 
                     <h3>Price</h3>
                     <ul class="filterCategory">
-                        <li class='priceFilter' id='1000'>Under 1000</li>
-                        <li class='priceFilter' id='500'>Under 500</li>
-                        <li class='priceFilter' id='100'>Under 100</li>
-                        <li class='priceFilter' id='50'>Under 50</li>
-                        <li class='priceFilter' id='10'>Under 10</li>
+                        <li tabindex="0" class='priceFilter' id='1000'>Under 1000</li>
+                        <li tabindex="0" class='priceFilter' id='500'>Under 500</li>
+                        <li tabindex="0" class='priceFilter' id='100'>Under 100</li>
+                        <li tabindex="0" class='priceFilter' id='50'>Under 50</li>
+                        <li tabindex="0" class='priceFilter' id='10'>Under 10</li>
                     </ul>
                 </div>
 
@@ -247,20 +247,32 @@
 
             document.querySelectorAll('.ratings').forEach(rating => {
                 rating.addEventListener('click', () => {
-                    document.querySelectorAll('.ratings').forEach(liColoring => {
-                        if (liColoring.classList.contains('underline')) {
-                            liColoring.classList.remove('underline')
-                        }
-                    })
-                    rating.classList.add('underline')
-                    ecommerceApp.filterByRating(ecommerceApp.displayedProducts, rating.id, ecommerceApp.currentFilter.currentPrice);
+                    ecommerceApp.filterByRatingGallery(rating)
                 })
+
+                //add accessibility to keyboard only
+                rating.addEventListener('keydown', function(e) {
+                    if(e.keyCode == 13 || e.keyCode == 32) {
+                        ecommerceApp.filterByRatingGallery(rating)
+                    }})
+
             })
 
             document.querySelectorAll('.priceFilter').forEach( price => {
                 
-                price.addEventListener('click', () => {
-                    document.querySelectorAll('.priceFilter').forEach(liColoring => {
+                price.addEventListener('click', () => {                   
+                    ecommerceApp.filterByPriceGallery(price)
+                })
+                // adding accessibility to keyboard only users
+                price.addEventListener('keydown', function(e) {
+                    if(e.keyCode == 13 || e.keyCode == 32) {
+                        ecommerceApp.filterByPriceGallery(price)
+                    }})
+            })
+
+            
+            ecommerceApp.filterByPriceGallery = (price) => {
+                document.querySelectorAll('.priceFilter').forEach(liColoring => {
                         if (liColoring.classList.contains('underline')) {
                             liColoring.classList.remove('underline')
                         }
@@ -268,8 +280,17 @@
 
                     price.classList.add('underline')
                     ecommerceApp.filterByRating(ecommerceApp.displayedProducts, ecommerceApp.currentFilter.currentRating, price.id)
-                })
-            })
+            }
+
+            ecommerceApp.filterByRatingGallery = (rating) => {
+                document.querySelectorAll('.ratings').forEach(liColoring => {
+                        if (liColoring.classList.contains('underline')) {
+                            liColoring.classList.remove('underline')
+                        }
+                    })
+                    rating.classList.add('underline')
+                    ecommerceApp.filterByRating(ecommerceApp.displayedProducts, rating.id, ecommerceApp.currentFilter.currentPrice);
+            }
         }
 
     </script>

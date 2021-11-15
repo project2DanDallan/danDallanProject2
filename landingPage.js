@@ -9,12 +9,24 @@ ecommerceApp.heroButton = document.querySelector('.pseudoButton')
 //function to add the link event listener to each of the 4 images
 ecommerceApp.addLinks = () => {
     ecommerceApp.categories.forEach(item => {
+        const id = item.id
+        console.log(id)
         item.addEventListener('click', function() {
 
-            const id = item.id
-            console.log(id)
+            
             window.location.assign(`products.html?category=${id}`)
         })
+        //add keypress event for accessibility
+
+        item.addEventListener('keydown', function(e) {
+            console.log('keypressed!')
+            console.log(e.keyCode)
+            if(e.keyCode == 13 || e.keyCode == 32) {
+                console.log('pressed')
+                window.location.assign(`products.html?category=${id}`)
+            }
+        })
+
     })
 
     ecommerceApp.heroButton.addEventListener('click', function() {
@@ -47,17 +59,21 @@ leftAndRight.forEach(image => {
 }})
 
 // trying offset width to dynamically change the position of text depending on screen width
-const section1Width= document.querySelector(".testCategory .section1").offsetWidth
-console.log(section1Width)
-const p = document.querySelector('.testCategory .section1 p')
-p.style.left = `${section1Width}px`;
-
-const section2Width= document.querySelector(".testCategory .section2").offsetWidth
-
-const p2 = document.querySelector('.testCategory .section2 p')
-p2.style.right = `${section1Width}px`;
-
-
+const widthChange = () => {
+    const section1Width= document.querySelector(".testCategory .section1").offsetWidth
+    console.log(section1Width)
+    
+    const p = document.querySelector('.testCategory .section1 p')
+    p.style.left = `${section1Width}px`;
+    
+    
+    const p2 = document.querySelector('.testCategory .section2 p')
+    p2.style.right = `${section1Width}px`;
+}
+widthChange()
+window.addEventListener("resize", function() {
+    widthChange()
+})
 
 
 
@@ -97,7 +113,7 @@ ecommerceApp.displayNewReleases = function(array) {
         const div = document.createElement('div')
         div.innerHTML = `
         <div class="gridItem2">
-            <a href='product.html?id=${arrayToBeShuffled[i].id}'><img src="${arrayToBeShuffled[i].image}" alt=""></a>
+            <a href='product.html?id=${arrayToBeShuffled[i].id}'><img src="${arrayToBeShuffled[i].image}" alt="${arrayToBeShuffled[i].title}. Links to product page."></a>
         </div>`
 
 
