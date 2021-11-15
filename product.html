@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./styles/style.css">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-    <title>Document</title>
+    <title>DYNAMIC DEPO - Product Page</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,30 +19,34 @@
     <div class="container">
 
         <!-- header and menus -->
-        <header class="fullBleed topbar">
+        <header role="banner" class="fullBleed topbar">
             
-            <div class="icon" id="navLink"><i id="navIcon" class="fas fa-bars"></i></div>
-            <div id="navMenu" class="menu navMenu">
+            <div class="icon" id="navLink"><i id="navIcon" class="fas fa-bars" aria-label="navigation menu icon"></i></div>
+            <div role="navigation" id="navMenu" class="menu navMenu">
                 
                 <div class="menuContent right">
 
                     <div>
-                        <div class="icon" id="navMenuLink"><i id="navIcon" class="fas fa-times"></i></div>
+                        <div class="icon" id="navMenuLink"><i id="navIcon" class="fas fa-times" aria-label="close navigation menu"></i></div>
                     </div>
 
                     <div class="menuLinks menuContentElement">
-                        <div class="menuLogo">
-                            <img class="logoImage" src="./assets/logo.png">
+                        <div class="menuLogo" aria-label="menu logo">
+                            <img class="logoImage" src="./assets/logo.png" alt="dynamic depo logo">
                         </div>
                         
-                        <a class="menuLink" href="./index.html">HOME</a>
-                        <a class="menuLink" href="./products.html">PRODUCTS</a>
+                        <a class="menuLink" href="./index.html" aria-label="home page">HOME</a>
+                        <a class="menuLink" href="./products.html" aria-label="products page">PRODUCTS</a>
                         
-                        <select id="currencySelection" name="currencySelection" class="select">
-                            <option selected value="CAD">CAD</option>
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                        </select>
+                        <div class="labelWrap">
+                            <select id="currencySelection" name="currencySelection" class="select fas fa-chevron-down" aria-label="currency selection">
+                                <option selected value="CAD">CAD</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                         
                         
                     </div>
@@ -53,24 +57,21 @@
             
             <!-- logo -->
             <div>
-                <img class="logoImage hideLogo" src="./assets/logo.png">
-            
-                
-
+                <a href="./index.html" aria-label="home page"><img class="logoImage hideLogo" src="./assets/logo.png" aria-label="logo" alt="dynamic depo logo"></a>
             </div>
             
-            <div class="icon" id="cartLink"><i id="cartIcon" class="fas fa-shopping-bag"></i></div>
-            <div id="cartMenu" class="menu cartMenu">
+            <div class="icon" id="cartLink"><i id="cartIcon" class="fas fa-shopping-bag" aria-label="wishlist menu"></i></div>
+            <div role="complementary" id="cartMenu" class="menu cartMenu">
                 <div class="menuContent left">
 
                     <div>
-                        <div class="icon" id="cartMenuLink"><i id="cartIcon" class="fas fa-times"></i></div>
+                        <div class="icon" id="cartMenuLink"><i id="cartIcon" class="fas fa-times" aria-label="close wishlist menu"></i></div>
                     </div>
 
-                    <div class="menuLinks menuContentElement">
-                        <span id="emptyCart"></span>
+                    <div class="menuLinks menuContentElement" aria-label="wishlist items">
+                        <span id="emptyCart" aria-label="empty cart option"></span>
                         <div id="wishlist" class="cartList"></div>
-                        <span id="subtotal"></span>
+                        <span id="subtotal" aria-label="subtotal"></span>
                     </div>
                     
             
@@ -88,11 +89,11 @@
         <aside class="testbg"></aside>
 
         <!-- product details -->
-        <section class="product">
+        <section class="product" role="main">
             
             <!-- product image -->
             <div class="image">
-                <img id="productImg">
+                <img id="productImg" aria-label="product image" alt="product image">
             </div>
             
             <!-- product details -->
@@ -107,7 +108,7 @@
                 <h2 class="productPrice" id="productPrice"></h2>
 
                 <!-- quantity and add to cart -->
-                <button class="addTo" id="addTo">Add to wishlist</button>
+                <button class="addTo" id="addTo" aria-label="add product to wishlist">Add to wishlist</button>
 
                 <!-- product description -->
                 <h2>Product description</h2>
@@ -119,7 +120,7 @@
         <aside class="testbg"></aside>
 
         <aside class="relatedProductsBG"></aside>
-        <section class="relatedProducts">
+        <section class="relatedProducts" role="main">
             
             <h2>Related products</h2>
 
@@ -130,8 +131,35 @@
         </section>
         <aside class="relatedProductsBG"></aside>
 
-        <footer class= 'fullBleed'>
+        <footer class='fullBleed'>
+            <ul>
+                <li>Frequently Asked Questions</li>
+                <li>Contact Us</li>
+                <li>Very Cool Link Please Click</li>
+                <li>Who are we and Why are we so Cool!</li>
+            </ul>
+
+            <ul>
+                <li>Our Story</li>
+                <li>Our employees</li>
+                <li>find our stores</li>
+                <li>Something else</li>
+            </ul>
+
+            <form class= 'formFlex'>
+                <div class="formContainer">
+                    <label  class = 'sr-only' for="email">Email</label>
+                    <input type="email" name = 'email' placeholder = ' Your Email address' id='email'>
+                </div>
+                <button type='submit'>Sign Up For Our NewsLetter</button>
+            </form>
+
+
+
             <p>Created at Juno College 2021</p>
+
+
+            
         </footer>
 
     </div>
@@ -146,119 +174,8 @@
     <!-- Header js functionality -->
     <script src='./scripts/header.js'></script>
     
-    <script>
-        
-        ecommerceApp.checkProduct = function() {
-         
-            // storage main container in variable
-            const error404 = document.getElementById('productPageContainer')
-            
-            // check if there are arguments in the url
-            let url = window.location.href;
-            if(url.includes('?')){
-
-                // storing the url parameter value of "id"
-                url = url.substring(url.length,url.indexOf('=')+1);
-
-                // using regex to create a condition of only numberic values to follow
-                const numericCondition = /^\d+$/;
-
-                // check if id parameter is numerical
-                if (numericCondition.test(url)) {
-
-                    // check if url is greater than 0 but less than max number of available products
-                    if(url < ecommerceApp.products.length && url > 0) {
-                        
-                        // test and log the array
-                        console.log(ecommerceApp.products)
-                        
-                        // get index of product by id number
-                        const index = ecommerceApp.products.findIndex(p => p.id == url);
-
-                        // declare ids as variables
-                        const productImg = document.getElementById('productImg');
-                        productImg.src = ecommerceApp.products[index].image;
-                        
-                        const productTitle = document.getElementById('productTitle');
-                        productTitle.innerText = ecommerceApp.products[index].title
-
-                        const productPrice = document.getElementById('productPrice');
-                        productPrice.innerText = `${(ecommerceApp.products[index].price*ecommerceApp.currency[ecommerceApp.currencyId]).toFixed(2)} ${ecommerceApp.currencyId}`
-
-                        const productRating = document.getElementById('productRating');
-                        productRating.innerText = `${ecommerceApp.products[index].rating.rate} (${ecommerceApp.products[index].rating.count} ratings)`
-                        
-                        const productDesc = document.getElementById('productDesc');
-                        productDesc.innerText = ecommerceApp.products[index].description
-                        
-                        //testing purposes remove later
-                        console.log(ecommerceApp.products[index].category)
-
-                        
-                        // related products
-                        ecommerceApp.productsByCategory = []; // store all products with specified category
-                        ecommerceApp.productListings = []; // store limited number of products with specified category
-
-                        // iterate through products array
-                        for(let i = 0 ; i < ecommerceApp.products.length ; i++) {
-                            // if a product is equal to the product page cateogry BUT not the same product we are currently viewing then push to productsByCategory array
-                            if(ecommerceApp.products[i].category === ecommerceApp.products[index].category && ecommerceApp.products[i].id != ecommerceApp.products[index].id) {
-                                ecommerceApp.productsByCategory.push(ecommerceApp.products[i])
-                            }
-                        }
-
-                        // remove the product thats currently being viewed out of related products
-
-                        // randomize the productsByCategory array and take the first 3 objects
-                        ecommerceApp.productListings = ecommerceApp.productsByCategory
-                        .map(x => ({ x, r: Math.random() }))
-                        .sort((a, b) => a.r - b.r)
-                        .map(a => a.x)
-                        .slice(0, 3);
-
-                        ecommerceApp.displayProducts(ecommerceApp.productListings, ecommerceApp.products[index].category);
-                    
-                        const addToWishlist = document.getElementById('addTo')
-
-                        // event listener for shopping cart and nav icon
-                        addToWishlist.addEventListener('click', function() {
-                            ecommerceApp.addToWishlist(ecommerceApp.products[index].id,ecommerceApp.products[index].title,ecommerceApp.products[index].image,ecommerceApp.products[index].price);
-                        });
-
-                    } else {
-                        // throw 404 error
-                        ecommerceApp.errorPage(error404);
-                    }
-                } else {
-                    // throw 404 error
-                    ecommerceApp.errorPage(error404);
-                }
-            
-            } else {
-                // redirect to products page
-                ecommerceApp.redirect('products');
-            }
-
-        }
-
-        ecommerceApp.addToWishlist = function(itemId,item,image,price) {
-
-            const id = `${itemId}`;
-            const itemLists = {};
-            itemLists[id] = {
-                id: itemId,
-                title: item,
-                image: image,
-                price: price
-            }
-
-            // update current wishlist
-            ecommerceApp.updateWishlist();
-
-            //push to firebase our new itemLists.
-            return firebase.database().ref(`/${ecommerceApp.cartId}`).update(itemLists)
-        }
-    </script>
+    <!-- Product page js functionality -->
+    <script src='./scripts/product.js'></script>
     
 </body>
 </html>

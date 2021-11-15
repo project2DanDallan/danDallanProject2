@@ -57,21 +57,9 @@ ecommerceApp.callCurrencyApi = () => {
         .then(res=>res.json())
         .then(json=> {
             ecommerceApp.currency = json;
-
             ecommerceApp.currency.USD = ecommerceApp.currency.USD / ecommerceApp.currency.CAD
             ecommerceApp.currency.EUR = ecommerceApp.currency.EUR / ecommerceApp.currency.CAD  
             ecommerceApp.currency.CAD = 1;
-
-            // set new cartId to localstorage only if there isnt already a cartId
-            if(!localStorage.getItem("currencyId")) {
-                localStorage.setItem("currencyId", 'CAD');
-            }
-            ecommerceApp.currencyId = localStorage.getItem("currencyId");
-
-//             const currencySelection = document.getElementById('currencySelection');
-// // currencySelection.value = ecommerceApp.currencyId;
-// console.log(ecommerceApp.currencyId)
-// console.log('h')
         })
         // catch and log any errors related to api call
         .catch(function(error) {
@@ -266,6 +254,13 @@ ecommerceApp.filterByRating = function (array, rating, price) {
 // perform api call
 ecommerceApp.init = function() {
     ecommerceApp.callApi();
+
+    // set new cartId to localstorage only if there isnt already a cartId
+    if(!localStorage.getItem("currencyId")) {
+        localStorage.setItem("currencyId", 'CAD');
+    }
+    ecommerceApp.currencyId = localStorage.getItem("currencyId");
+
     ecommerceApp.callCurrencyApi();
     ecommerceApp.updateWishlist();
     

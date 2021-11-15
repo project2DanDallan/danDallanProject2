@@ -6,6 +6,10 @@ a {
    
 }
 
+*:focus {
+    border:1px dashed red;
+}
+
 body {
     background-color: #ccc;
     // background-image: -webkit-linear-gradient(-80deg, skyblue 15%, #FFFAFA 85%);
