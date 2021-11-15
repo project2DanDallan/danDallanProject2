@@ -250,6 +250,22 @@ img {
   display: block;
 }
 
+.categoryLink:focus {
+  outline: 2px dashed red;
+}
+
+.imgContainer img:focus {
+  outline: 2px dashed red;
+}
+
+.gridItem2 a:focus {
+  outline: 2px dashed red;
+}
+
+.pseudoButton:focus, .formFlex button:focus {
+  outline: 3px dashed green;
+}
+
 .featuredProduct {
   height: 600px;
   position: relative;
@@ -324,7 +340,7 @@ img {
   content: "";
   width: 20%;
   height: 10px;
-  background-color: #6fe7e7;
+  background-color: orange;
   position: absolute;
   bottom: -50%;
   left: 40%;
@@ -566,9 +582,18 @@ img {
   width: 80%;
   margin: auto;
 }
+.newReleases img {
+  -webkit-transition: all 0.4s linear;
+  transition: all 0.4s linear;
+}
+.newReleases img:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
 
 footer {
   background-color: darkslateblue;
+  margin-top: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -776,11 +801,6 @@ footer li, footer p {
   }
 }
 @media (max-width: 840px) {
-  .h2Container > h2 {
-    font-size: 50px;
-  }
-}
-@media (max-width: 660px) {
   .testCategory {
     height: 800px;
   }
@@ -800,15 +820,30 @@ footer li, footer p {
   }
 
   .h2Container > h2 {
+    font-size: 50px;
+  }
+}
+@media (max-width: 660px) {
+  .h2Container > h2 {
     font-size: 40px;
   }
 
   .featuredProduct .featuredProductText h1 {
     font-size: 2.5rem;
+    margin-left: 0;
   }
 
   .galleryGrid .computerText {
     font-size: 30px;
+  }
+}
+@media (max-width: 520px) {
+  .h2Container > h2 {
+    font-size: 35px;
+  }
+
+  .featuredProduct .featuredProductText h1 {
+    font-size: 2rem;
   }
 }
 @media (max-width: 440px) {
@@ -835,6 +870,10 @@ footer li, footer p {
 
   .h2Container > h2 {
     font-size: 30px;
+  }
+
+  .featuredProduct .featuredProductText h1 {
+    font-size: 1.5rem;
   }
 }
 section.product {
