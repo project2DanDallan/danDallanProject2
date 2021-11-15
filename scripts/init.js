@@ -130,6 +130,33 @@ ecommerceApp.errorPage = function(element) {
             </section>
    </div>
    <aside class="testbg"></aside>
+
+   <footer class='fullBleed'>
+            <ul>
+                <li>Frequently Asked Questions</li>
+                <li>Contact Us</li>
+                <li>Very Cool Link Please Click</li>
+                <li>Who are we and Why are we so Cool!</li>
+            </ul>
+
+            <ul>
+                <li>Our Story</li>
+                <li>Our employees</li>
+                <li>find our stores</li>
+                <li>Something else</li>
+            </ul>
+
+            <form class= 'formFlex'>
+                <div class="formContainer">
+                    <label  class = 'sr-only' for="email">Email</label>
+                    <input type="email" name = 'email' placeholder = ' Your Email address' id='email'>
+                </div>
+                <button type='submit'>Sign Up For Our NewsLetter</button>
+            </form>
+
+            <p>Created at Juno College 2021</p>
+
+        </footer>
    `
 }
 
@@ -223,10 +250,8 @@ ecommerceApp.displayProducts = function(productArray, getUrl = null) {
 //testing purposes for sorting our new array
 ecommerceApp.filterByRating = function (array, rating, price) {
 
-    ecommerceApp.currentFilter.currentPrice = price;
     ecommerceApp.currentFilter.currentRating = rating;
     
-
     ecommerceApp.filterProductsByRating = [];
 
     // filter array if product rating is greater than target rating
@@ -239,7 +264,7 @@ ecommerceApp.filterByRating = function (array, rating, price) {
 
     //with the filtered array by rating, filter again by price indicated
     ecommerceApp.filterProductsByPrice = ecommerceApp.filteredByRating.filter( (product) => {
-        return product.price <= price;
+        return product.price*ecommerceApp.currency[ecommerceApp.currencyId] <= price;
     });
 
     // sort the remaining elements in the array by rating : highest - lowest

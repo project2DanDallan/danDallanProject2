@@ -1,6 +1,5 @@
 /* header stuff */
 header.topbar {
-    // background:green;
     padding:1em;
     display: grid;
     grid-template-columns: 1fr 12fr 1fr;
@@ -68,10 +67,8 @@ header.topbar {
         position: fixed;
         top:0;
         z-index: 100;
-        
         animation-duration: 300ms;
         animation-fill-mode: forwards;
-        // padding:1.5em;
         height:100%;
         font-size:2rem;
 
@@ -128,11 +125,9 @@ header.topbar {
                         padding: 0;
                     }
                 }
-                 
-                
+                      
             }
-            .menuContentElement {
-                
+            .menuContentElement {  
                 justify-content: center;
                 display:flex;
                 flex-direction: column;
@@ -212,12 +207,8 @@ i.fa-times .remove:hover {
 // wishlist styling
 div.cartList {
     display:flex;
-    flex-direction: column;
-    // background:blue;
-    
-    
-    margin-bottom: 2em;
-    
+    flex-direction: column;   
+    margin-bottom: 2em; 
     
     .cartItemContainer {
         display:flex;
