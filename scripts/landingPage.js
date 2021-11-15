@@ -10,7 +10,6 @@ ecommerceApp.heroButton = document.querySelector('.pseudoButton')
 ecommerceApp.addLinks = () => {
     ecommerceApp.categories.forEach(item => {
         const id = item.id
-        console.log(id)
         item.addEventListener('click', function() {
 
             
@@ -19,10 +18,8 @@ ecommerceApp.addLinks = () => {
         //add keypress event for accessibility
 
         item.addEventListener('keydown', function(e) {
-            console.log('keypressed!')
-            console.log(e.keyCode)
+
             if(e.keyCode == 13 || e.keyCode == 32) {
-                console.log('pressed')
                 window.location.assign(`products.html?category=${id}`)
             }
         })
@@ -39,7 +36,7 @@ ecommerceApp.addLinks = () => {
 const leftAndRight = document.querySelectorAll('.testCategory .imgContainer')
 
 leftAndRight.forEach(image => {
-    console.log(image.classList.contains('leftImg'))
+
     const right = document.querySelector('.rightImg')
     const left = document.querySelector ('.leftImg')
     if (image.classList.contains('leftImg')) {
@@ -61,7 +58,6 @@ leftAndRight.forEach(image => {
 // trying offset width to dynamically change the position of text depending on screen width
 const widthChange = () => {
     const section1Width= document.querySelector(".testCategory .section1").offsetWidth
-    console.log(section1Width)
     
     const p = document.querySelector('.testCategory .section1 p')
     p.style.left = `${section1Width}px`;
@@ -75,18 +71,10 @@ window.addEventListener("resize", function() {
     widthChange()
 })
 
-
-
-
-
-
-
-
 //New Releases section.
 
 ecommerceApp.displayNewReleases = function(array) {
-    //to remove
-    console.log(ecommerceApp.products[0])
+
     // copy the ecommerceApp.products array so we can manipulate it (and not mess anything else up)
     let arrayToBeShuffled = ecommerceApp.products.map(x => x)
 
@@ -96,15 +84,11 @@ ecommerceApp.displayNewReleases = function(array) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
         }
-        console.log(array)
         return array;
         
     }
     //call the function
     shuffle(arrayToBeShuffled)
-
-    //to remove
-    console.log(arrayToBeShuffled)
     
     //Grab the first 3 items on our randomized array and post them on the page
     const newReleases = document.querySelector('.newReleases')
@@ -122,4 +106,11 @@ ecommerceApp.displayNewReleases = function(array) {
 
 
     }
+}
+
+ecommerceApp.consoleLog = function() {
+
+    ecommerceApp.addLinks()
+    ecommerceApp.displayNewReleases()
+    
 }

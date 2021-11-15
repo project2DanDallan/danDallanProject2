@@ -19,9 +19,6 @@ ecommerceApp.checkProduct = function() {
             // check if url is greater than 0 but less than max number of available products
             if(url < ecommerceApp.products.length && url > 0) {
                 
-                // test and log the array
-                console.log(ecommerceApp.products)
-                
                 // get index of product by id number
                 const index = ecommerceApp.products.findIndex(p => p.id == url);
 
@@ -39,13 +36,9 @@ ecommerceApp.checkProduct = function() {
                 productRating.innerText = `${ecommerceApp.products[index].rating.rate} (${ecommerceApp.products[index].rating.count} ratings)`
                 
                 const productDesc = document.getElementById('productDesc');
-                
-                productDesc.innerText = ecommerceApp.products[index].description
-                
-                //testing purposes remove later
-                console.log(ecommerceApp.products[index].category)
 
-                
+                productDesc.innerText = ecommerceApp.products[index].description
+              
                 // related products
                 ecommerceApp.productsByCategory = []; // store all products with specified category
                 ecommerceApp.productListings = []; // store limited number of products with specified category

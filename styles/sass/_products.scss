@@ -1,8 +1,5 @@
 section.products {
     display: flex;
-    // display:grid;
-    // grid-template-columns: 1fr 3fr;
-    // gap:1em;
     .productListings{
         flex:3;
         h1 {
@@ -19,8 +16,6 @@ section.products {
     .filterPanel {
         flex: 1;
         margin-right: 1em;
-        // background:blue;
-        // position:relative;
         .filterSettings {
             padding:1em;
             display:flex;
@@ -50,7 +45,7 @@ section.products {
                 }
                 margin-bottom:1.5em;
             }
-            // position: fixed;
+
             div.ratings {
                 color:#333;
                 display:flex;
@@ -65,14 +60,11 @@ section.products {
                 position: relative;
             }
             .underline::before {
-                // border:2px orange solid;
                 content: '';
                 position: absolute;
                 background:purple;
                 height:100%;
                 width:125%;
-                // top:0;
-                // right:0;
                 left:-.5em;
                 bottom:0;
                 z-index:-1;
@@ -95,79 +87,68 @@ section.products {
             border-radius: 10px;
             padding:1em;
             
-            // display:flex;
-            // flex-direction: column;
-            // justify-content: space-between;
             a {
                 display:flex;
                 flex-direction: column;
                 height: 100%;
-    
-                
+        
+                div.productImage {
+                    height: 15.625em;
+                    padding:0;
+                    // height:50%;
+                    display:flex;
+                    justify-content: center;
                     
-                    div.productImage {
-                        height: 15.625em;
-                        padding:0;
-                        // height:50%;
-                        display:flex;
-                        justify-content: center;
-                        
-                        img {
-                            max-height:100%;
-                        }
+                    img {
+                        max-height:100%;
                     }
+                }
     
-                    div.productCardContainer {
-                        margin-top:1em;
+                div.productCardContainer {
+                    margin-top:1em;
+                    display:flex;
+                    flex-direction: column;
+                    flex-grow: 1;
+                    justify-content: space-between;
+
+                    div.productTitle, div.productPrice, div.productRating {
+                        padding:0;
+                    }
+
+                    div.productTitle {
+                        font-size:1.25rem;
+                        line-height: 1.25rem;
+                        letter-spacing: 0.75px;
+                        margin-bottom:1em;
+                    }
+
+                    div.cardRatePriceContainer {
+                        padding:0;
                         display:flex;
                         flex-direction: column;
-                        flex-grow: 1;
-                        justify-content: space-between;
-    
-                        div.productTitle, div.productPrice, div.productRating {
-                            padding:0;
+                        font-size:1.25rem;
+
+                        div.productRating {
+                            font-size:1rem;
+                            line-height:1rem;
+                            letter-spacing:0.75px;
+                            margin-bottom:1em; 
                         }
-    
-                        div.productTitle {
-                            font-size:1.25rem;
-                            line-height: 1.25rem;
-                            letter-spacing: 0.75px;
-                            margin-bottom:1em;
-                        }
-    
-                        div.cardRatePriceContainer {
-                            padding:0;
-                            display:flex;
-                            flex-direction: column;
-                            font-size:1.25rem;
-    
-                            div.productRating {
-                                font-size:1rem;
-                                line-height:1rem;
-                                letter-spacing:0.75px;
-                                margin-bottom:1em; 
-                            }
-    
-                            div.productPrice {
-                                font-size:1.5rem;
-                                line-height:1rem;
-                                font-weight: bold;
-                                letter-spacing:0.75px;
-                                margin-bottom:1em; 
-                            }
+
+                        div.productPrice {
+                            font-size:1.5rem;
+                            line-height:1rem;
+                            font-weight: bold;
+                            letter-spacing:0.75px;
+                            margin-bottom:1em; 
                         }
                     }
+                }
     
             }
         }
     }
 
-    // @media screen and (max-width: 705px) {
-    //     .productListings {
-    //         display:grid;
-    //         grid-template-columns: 1fr;
-    //     }
-    // }
 }
 
 @media screen and (max-width: 900px) {

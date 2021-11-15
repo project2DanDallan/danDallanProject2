@@ -82,7 +82,7 @@ const currencySelection = document.getElementById('currencySelection');
 currencySelection.value = ecommerceApp.currencyId; // pre select whats in our localstorage
 
 currencySelection.addEventListener("change", function(e) {
-    console.log(currencySelection.value)
+
     localStorage.setItem('currencyId',currencySelection.value)
     ecommerceApp.currencyId = localStorage.getItem("currencyId");
     if(typeof ecommerceApp.checkProduct === "function") {
@@ -131,7 +131,11 @@ ecommerceApp.displayWishlist = function(cartArray) {
 
         const cartItemPrice = document.createElement('div');
         cartItemPrice.classList.add('cartItemPrice');
-        cartItemPrice.innerHTML = (cartArray[prop].price*ecommerceApp.currency[ecommerceApp.currencyId]).toFixed(2);
+
+        if(typeof ecommerceApp.checkProduct !== "undefined") {
+            cartItemPrice.innerHTML = (cartArray[prop].price*ecommerceApp.currency[ecommerceApp.currencyId]).toFixed(2);
+        }
+        
 
         listItemElement.appendChild(cartItemDel);
         listItemElement.appendChild(cartItemImgContainer);
@@ -140,7 +144,6 @@ ecommerceApp.displayWishlist = function(cartArray) {
 
         // add sum of each cart item price to subtotal
         ecommerceApp.totalCartValue += cartArray[prop].price;
-        console.log(ecommerceApp.totalCartValue)
 
         // add to div
         ulElement.appendChild(listItemElement)
@@ -155,11 +158,9 @@ ecommerceApp.displayWishlist = function(cartArray) {
         item.addEventListener("click", function(e) {
             const itemToRemove = item.getAttribute('data-id');
             firebase.database().ref(`/${ecommerceApp.cartId}`).child(itemToRemove).remove()
-            // ecommerceApp.cartArrayCount = ecommerceApp.cartArrayCount - 1
 
             if(cartArray === null) {
                 ecommerceApp.cartArrayCount = 0;
-                console.log('im null')
             }
 
             ecommerceApp.updateWishlist();
@@ -180,7 +181,6 @@ ecommerceApp.displayWishlist = function(cartArray) {
     // set cartArrayCount to the number of keys in cartArray
     if(cartArray !== null) {
         ecommerceApp.cartArrayCount = Object.keys(cartArray).length
-        console.log('not null')
     } else {
         ecommerceApp.cartArrayCount = 0;
     }
@@ -194,38 +194,4 @@ ecommerceApp.displayWishlist = function(cartArray) {
     } else {
         document.getElementById('cartIcon').innerHTML = '';
     }
-
-      
-    
-
-    //   document.getElementById('cartArrayCount').innerHTML = ecommerceApp.cartArrayCount
-    // cartArray.forEach((elem, index) => {
-    //     // const listItemElement = document.createElement('li');
-    //     //   listItemElement.innerHTML = `<i class="far fa-square"></i>`;
-    //     //   listItemElement.appendChild(document.createTextNode(toDoData[prop].description));
-    
-    //     //   arrayOfToDos.push(listItemElement.outerHTML);
-    //     //   ulElement.innerHTML = arrayOfToDos.join('');
-
-    //     console.log('his');
-    //     console.log(index);
-    // })
 };
-
-// ecommerceApp.dbRef.on('value', (data) => {
-//     const toDoData = data.val();
-  
-//     const arrayOfToDos = [];
-    
-//     for(prop in toDoData) {
-//       const listItemElement = document.createElement('li');
-//       listItemElement.innerHTML = `<i class="far fa-square"></i>`;
-//       listItemElement.appendChild(document.createTextNode(toDoData[prop].description));
-  
-//       arrayOfToDos.push(listItemElement.outerHTML);
-//     };
-
-  
-//     ulElement.innerHTML = arrayOfToDos.join('');
-  
-//   });
